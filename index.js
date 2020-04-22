@@ -122,12 +122,16 @@ app.get("/", (req, res) => {
   res.send("Hi from express");
 });
 
+// This is recipes router
+const recipesRouter = require("./routers/recipes");
+app.use("/recipes", recipesRouter);
+
 // POST endpoint for testing purposes, can be removed
 app.post("/echo", (req, res) => {
   res.json({
     youPosted: {
-      ...req.body
-    }
+      ...req.body,
+    },
   });
 });
 
@@ -140,11 +144,11 @@ app.post("/authorized_post_request", authMiddleWare, (req, res) => {
 
   res.json({
     youPosted: {
-      ...req.body
+      ...req.body,
     },
     userFoundWithToken: {
-      ...user.dataValues
-    }
+      ...user.dataValues,
+    },
   });
 });
 
